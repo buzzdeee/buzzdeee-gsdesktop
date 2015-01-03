@@ -1,0 +1,14 @@
+{
+  "name": "buzzdeee-gsdesktop",
+  "version": "0.1.0",
+  "author": "Sebastian Reitenbach",
+  "summary": "A puppet module to manage a GNUstep desktop",
+  "license": "Apache 2.0",
+  "source": "https://github.com/buzzdeee/buzzdeee-gsdesktop.git",
+  "project_page": "https://github.com/buzzdeee/buzzdeee-gsdesktop",
+  "issues_url": "https://github.com/buzzdeee/buzzdeee-gsdesktop/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
