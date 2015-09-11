@@ -13,12 +13,13 @@ class gsdesktop::install (
   }
 
   if $gsapps {
-    $gsapps.each |Hash $app| {
-      archive { $app['file']:
+
+    $gsapps.each |$app, $values| {
+      archive { $app:
         ensure        => present,
-        url           => "${gsapp_url}/${app['file']}",
+        url           => "${gsapp_url}/${values['file']}",
         target        => '/usr/local/libexec/GNUstep',
-        digest_string => $app['sha512sum'],
+        digest_string => $values['sha512sum'],
         digest_type   => 'sha512',
         require       => Package[$package_name],
       }
