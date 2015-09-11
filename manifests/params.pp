@@ -1,7 +1,7 @@
 # private class, do not use directly
 # takes care about defining the class parameter default values
 class gsdesktop::params {
-  $gsapp_url = undef
+  $gsapp_url = 'puppet:///puppet_gsapps'
   $gsapps = undef
   $package_name = 'gnustep-desktop'
   $package_ensure = 'installed'

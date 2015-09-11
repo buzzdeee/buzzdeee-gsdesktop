@@ -12,14 +12,16 @@ class gsdesktop::install (
     ensure => $package_ensure,
   }
 
-  $gsapps.each |Hash $app| {
-    archive { $app['file']:
-      ensure        => present,
-      url           => "puppet:///puppet_gsapps/${app['file']}",
-      target        => '/usr/local/libexec/GNUstep',
-      digest_string => $app['sha512sum'],
-      digest_type   => 'sha512',
-      require       => Package[$package_name],
+  if $gsapps {
+    $gsapps.each |Hash $app| {
+      archive { $app['file']:
+        ensure        => present,
+        url           => "${gsapp_url}/${app['file']}",
+        target        => '/usr/local/libexec/GNUstep',
+        digest_string => $app['sha512sum'],
+        digest_type   => 'sha512',
+        require       => Package[$package_name],
+      }
     }
   }
 
