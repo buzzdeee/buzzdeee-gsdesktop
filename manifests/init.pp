@@ -35,7 +35,32 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class gsdesktop {
+class gsdesktop (
+  $gsapp_url = $::gsdesktop::params::gsapp_url,
+  $gsapps = $::gsdesktop::params::gsapps,
+  $package_name = $::gsdesktop::params::package_name,
+  $package_ensure = $::gsdesktop::params::package_ensure,
+  $service_name = $::gsdesktop::params::service_name,
+  $service_ensure = $::gsdesktop::params::service_ensure,
+  $service_enable = $::gsdesktop::params::service_enable,
+  $service_flags = $::gsdesktop::params::service_flags,
+) inherits gsdesktop::params {
 
+  class { 'gsdesktop::install':
+    package_name   => $package_name,
+    package_ensure => $package_ensure,
+    gsapp_url      => $gsapp_url,
+    gsapps         => $gsapps,
+  }
+
+  class { 'gsdesktop::service':
+    service_name   => $service_name,
+    service_ensure => $service_ensure,
+    service_enable => $service_enable,
+    service_flags  => $service_flags,
+  }
+
+  Class[gsdesktop::install] ~>
+  Class[gsdesktop::service]
 
 }
