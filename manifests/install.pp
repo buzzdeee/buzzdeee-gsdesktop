@@ -15,7 +15,7 @@ class gsdesktop::install (
   if $gsapps {
 
     $gsapps.each |$app, $values| {
-      archive::tar_gz { $app:
+      archive { $app:
         ensure        => present,
         url           => "${gsapp_url}/${values['file']}",
         target        => '/usr/local/libexec/GNUstep',
